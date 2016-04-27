@@ -71,9 +71,9 @@ function renderChapterTable() {
 function renderRow (chapter, index) {
   return render(
     '<tr class="chapter">' +
-      '<td class="chapter-number"><span class="badge">' + (index + 1) + '</span></td>' +
-      '<td class="chapter-name"><span>' + chapter.code + '</span></td>' +
-      '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
+      '<td class="chapter-number"><div class="badge">' + (index + 1) + '</div></td>' +
+      '<td class="chapter-name"><div>' + chapter.code + '</div>' + (!!chapter.url ? '<div><a target="_parent" href="' + chapter.url + '">' + chapter.url + '</a></div>' : '') + '</td>' +
+      '<td class="chapter-duration"><div>' + chapter.duration + '</div></td>' +
     '</tr>'
   );
 }
@@ -185,6 +185,7 @@ Chapters.prototype.generateTable = function () {
     //insert the chapter data
     var row = renderRow(chapter, index);
     row.on('click', {module: this, index: index}, rowClickHandler);
+    row.find('a').on('click', function(event) { event.stopPropagation(); });
     row.appendTo(tbody);
     chapter.element = row;
   }
