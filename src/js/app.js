@@ -165,13 +165,14 @@ function renderModules(timeline, wrapper, params) {
    * The tabs in controlbar will appear in following order:
    */
 
+  tabs.add(infos.tab);
+  
   if (hasChapters) {
     tabs.add(chapters.tab);
   }
 
-  tabs.add(sharing.tab);
   tabs.add(downloads.tab);
-  tabs.add(infos.tab);
+  tabs.add(sharing.tab);
 
   tabs.openInitial(params.activeTab);
 
