@@ -294,6 +294,10 @@ function addBehavior(player, params, wrapper) {
       return;
     }
 
+    if (timeline.hasChapters && timeline.modules.length > 0 && !timeline.modules[0].tab.active) {
+      timeline.modules[0].tab.toggle.click();
+    }
+
     if (!playButton.hasClass('playing')) {
       playButton.addClass('playing');
     }
