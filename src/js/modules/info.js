@@ -9,7 +9,7 @@ function getPublicationDate(rawDate) {
     return '';
   }
   var date = new Date(rawDate);
-  return '<p>Published on: ' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + '</p>';
+  return '<p>Published on: ' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + '</p>';
 }
 
 function getSummary (summary) {
