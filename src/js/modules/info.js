@@ -9,7 +9,7 @@ function getPublicationDate(rawDate) {
     return '';
   }
   var date = new Date(rawDate);
-  return '<p>Veröffentlicht am: ' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + '</p>';
+  return '<p>Published on: ' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + '</p>';
 }
 
 function getSummary (summary) {
@@ -24,11 +24,11 @@ function createEpisodeInfo(tab, params) {
     '<h2>' + params.title + '</h2>' +
     '<h3>' + params.subtitle + '</h3>' +
     getSummary(params.summary) +
-    '<p>Dauer: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
     '<p class="info-link">' +
       'Permalink:<br>' +
-      '<a href="' + params.permalink + '" target="_blank" title="Permalink für die Episode">' + params.permalink + '</a>' +
+      '<a href="' + params.permalink + '" target="_blank" title="Permalink for Episode">' + params.permalink + '</a>' +
     '</p>'
   );
 }
@@ -58,8 +58,8 @@ function createShowInfo (tab, params) {
     '<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
-    '<p class="info-link">Link zur Show:<br>' +
-      '<a href="' + params.show.url + '" target="_blank" title="Link zur Show">' + params.show.url + '</a></p>'
+    '<p class="info-link">Link to the Show:<br>' +
+      '<a href="' + params.show.url + '" target="_blank" title="Link to the Show">' + params.show.url + '</a></p>'
   );
 }
 
@@ -79,7 +79,7 @@ function createSocialInfo(profiles) {
   var profileList = $('<ul></ul>');
   profiles.forEach(createSocialLink, profileList);
 
-  var container = $('<div class="social-links"><h3>Bleib in Verbindung</h3></div>');
+  var container = $('<div class="social-links"><h3>Stay in Touch</h3></div>');
   container.append(profileList);
   return container;
 }
@@ -99,8 +99,8 @@ function createSocialAndLicenseInfo (tab, params) {
   }
   footerContent = '';
   if (completeLicenseInfo) {
-    footerContent = '<p class="license-area">Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
-        '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
+    footerContent = '<p class="license-area">The Show "' + params.show.title + '" is licensed under<br>' +
+        '<a href="' + params.license.url + '" target="_blank" title="View License">' + params.license.name + '</a>' +
       '</p>';
   }
   footer = tab.createFooter(footerContent);
@@ -118,7 +118,7 @@ function createInfoTab(params) {
   // }
   var infoTab = new Tab({
     icon: 'pwp-info',
-    title: 'Infos anzeigen / verbergen',
+    title: 'Show / Hide Info',
     headline: 'Info',
     name: 'info'
   });

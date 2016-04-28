@@ -102,7 +102,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   }
   var downloadTab = new Tab({
     icon: 'pwp-download',
-    title: 'Downloads anzeigen / verbergen',
+    title: 'Show / Hide Downloads',
     name: 'downloads',
     headline: 'Download'
   });
@@ -142,7 +142,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   $select.on('change', setUrl);
 
   downloadTab
-    .createFooter('<h3>Direkter Link</h3>')
+    .createFooter('<h3>Direct Link</h3>')
     .append($downloadLinkElement);
 
   return downloadTab;

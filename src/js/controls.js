@@ -56,31 +56,31 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     log.info('Controls', 'createTimeControls', 'no chapterTab found');
   }
   if (hasChapters) {
-    this.createButton('pwp-controls-previous-chapter', 'Zurück zum vorigen Kapitel', function () {
+    this.createButton('pwp-controls-previous-chapter', 'Go to the previous chapter', function () {
       var activeChapter = chapterModule.getActiveChapter();
       if (this.timeline.getTime() > activeChapter.start + 10) {
-        log.debug('Controls', 'Zurück zum Kapitelanfang', chapterModule.currentChapter, 'from', this.timeline.getTime());
+        log.debug('Controls', 'Back to the start of chapter', chapterModule.currentChapter, 'from', this.timeline.getTime());
         return chapterModule.playCurrentChapter();
       }
-      log.debug('Controls', 'Zurück zum vorigen Kapitel', chapterModule.currentChapter);
+      log.debug('Controls', 'Go to the previous chapter', chapterModule.currentChapter);
       return chapterModule.previous();
     });
   }
 
-  this.createButton('pwp-controls-back-30', '30 Sekunden zurück', function () {
+  this.createButton('pwp-controls-back-30', 'Back 30 seconds', function () {
     log.debug('Controls', 'rewind before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() - 30);
     log.debug('Controls', 'rewind after', this.timeline.getTime());
   });
 
-  this.createButton('pwp-controls-forward-30', '30 Sekunden vor', function () {
+  this.createButton('pwp-controls-forward-30', 'Forward 30 seconds', function () {
     log.debug('Controls', 'ffwd before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() + 30);
     log.debug('Controls', 'ffwd after', this.timeline.getTime());
   });
 
   if (hasChapters) {
-    this.createButton('pwp-controls-next-chapter', 'Zum nächsten Kapitel springen', function () {
+    this.createButton('pwp-controls-next-chapter', 'Go to the next chapter', function () {
       log.debug('Controls', 'next Chapter before', this.timeline.getTime());
       chapterModule.next();
       log.debug('Controls', 'next Chapter after', this.timeline.getTime());
