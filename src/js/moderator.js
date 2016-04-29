@@ -136,7 +136,7 @@ function pausePlayersExceptOne(currentPlayerId) {
 function handleMessage(event) {
   // discard hash - it changes along with the time media is played
   var originalEvent = event.originalEvent,
-    data = originalEvent.data,
+    data = JSON.parse(originalEvent.data),
     action = data.action,
     argumentObject = data.arg,
     id = getIdFromLocation(originalEvent.source.location),
@@ -157,7 +157,7 @@ function handleMessage(event) {
   log.debug('received', action, 'from', id, 'with', argumentObject);
 
   if (action === 'waiting') {
-    player.frame.get(0).contentWindow.postMessage({playerOptions: player.data}, '*');
+    player.frame.get(0).contentWindow.postMessage(JSON.stringify({playerOptions: player.data}), '*');
   }
 
   if (action === 'ready' || action === 'pause') {

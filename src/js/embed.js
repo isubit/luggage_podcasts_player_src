@@ -10,13 +10,13 @@ var
 
 function postToOpener(obj) {
   log.debug('postToOpener', obj);
-  window.parent.postMessage(obj, '*');
+  window.parent.postMessage(JSON.stringify(obj), '*');
 }
 
 function messageListener (event) {
   var orig = event.originalEvent;
 
-  if (orig.data.action === 'pause') {
+  if (JSON.parse(orig.data).action === 'pause') {
     players.forEach(function (player) {
       player.pause();
     });
@@ -26,8 +26,8 @@ function messageListener (event) {
 function waitForMetadata (callback) {
   function metaDataListener (event) {
     var orig = event.originalEvent;
-    if (orig.data.playerOptions) {
-      callback(orig.data.playerOptions);
+    if (JSON.parse(orig.data).playerOptions) {
+      callback(JSON.parse(orig.data).playerOptions);
     }
   }
   $(window).on('message', metaDataListener);
