@@ -1,2 +1,8 @@
 @import "themes/isubit";
 @import "main-isubit";
+
+.tabs {
+  > section {
+    overflow-y: auto;
+  }
+}
