@@ -104,6 +104,8 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(dest + 'js/' + external));
   gulp.src(bower + 'jquery/dist/*')
     .pipe(gulp.dest(dest + 'js/' + external));
+  gulp.src(bower + 'raf-polyfill/*.js')
+      .pipe(gulp.dest(dest + 'js/' + external));
 
   // Copy progress polyfill JS and CSS
   gulp.src(bower + 'progress-polyfill/*.css')
