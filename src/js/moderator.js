@@ -1,7 +1,8 @@
 'use strict';
 
 var url = require('./url'),
-  cap = require('./util').cap;
+  cap = require('./util').cap,
+  windowOrigin = require('./util').getWindowOrigin();
 
 var log = require('./logging').getLogger('Moderator');
 
@@ -134,6 +135,11 @@ function pausePlayersExceptOne(currentPlayerId) {
  * @param {jQuery.Event} event
  */
 function handleMessage(event) {
+  
+  if (event.originalEvent.origin !== windowOrigin) {
+    return;
+  }
+  
   // discard hash - it changes along with the time media is played
   var originalEvent = event.originalEvent,
     data = originalEvent.data,
@@ -157,7 +163,7 @@ function handleMessage(event) {
   log.debug('received', action, 'from', id, 'with', argumentObject);
 
   if (action === 'waiting') {
-    player.frame.get(0).contentWindow.postMessage({playerOptions: player.data}, '*');
+    player.frame.get(0).contentWindow.postMessage({playerOptions: player.data}, windowOrigin);
   }
 
   if (action === 'ready' || action === 'pause') {

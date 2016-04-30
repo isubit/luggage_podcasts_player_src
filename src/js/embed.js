@@ -1,5 +1,7 @@
 'use strict';
 
+var windowOrigin = require('./util').getWindowOrigin();
+
 var log = require('./logging').getLogger('Embed');
 
 // everything for an embedded player
@@ -10,10 +12,15 @@ var
 
 function postToOpener(obj) {
   log.debug('postToOpener', obj);
-  window.parent.postMessage(obj, '*');
+  window.parent.postMessage(obj, windowOrigin);
 }
 
 function messageListener (event) {
+  
+  if (event.originalEvent.origin !== windowOrigin) {
+    return;
+  }
+  
   var orig = event.originalEvent;
 
   if (orig.data.action === 'pause') {
@@ -25,6 +32,9 @@ function messageListener (event) {
 
 function waitForMetadata (callback) {
   function metaDataListener (event) {
+    if (event.originalEvent.origin !== windowOrigin) {
+      return;
+    }
     var orig = event.originalEvent;
     if (orig.data.playerOptions) {
       callback(orig.data.playerOptions);

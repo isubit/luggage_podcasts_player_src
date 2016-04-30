@@ -28,7 +28,16 @@ function zeroFill (number, width) {
   return s;
 }
 
+function getWindowOrigin() {
+  if (window.location.origin) { // Some browsers (mainly IE) does not have this property, so we need to build it manually...
+    return window.location.origin;
+  } else {
+    return window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+  }
+}
+
 module.exports = {
   cap: cap,
-  zeroFill: zeroFill
+  zeroFill: zeroFill,
+  getWindowOrigin: getWindowOrigin
 };
