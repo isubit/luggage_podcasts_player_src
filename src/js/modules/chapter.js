@@ -53,7 +53,6 @@ function renderChapterTable() {
       '<thead>' +
         '<tr>' +
           '<th scope="col">Chapter Number</th>' +
-          '<th scope="col">Start Time</th>' +
           '<th scope="col">Title</th>' +
           '<th scope="col">Duration</th>' +
         '</tr>' +
