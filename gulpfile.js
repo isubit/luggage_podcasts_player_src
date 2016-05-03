@@ -141,7 +141,7 @@ gulp.task('clean', function (cb) {
 
 // build distribution package
 gulp.task('build', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'frame', 'images', 'copy', 'examples');
+  gulp.start('styles', 'scripts', 'frame', 'images', 'copy');
 });
 
 // Default task
