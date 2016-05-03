@@ -9,6 +9,7 @@ var gulp = require('gulp')
   , uglify = require('gulp-uglify')
   , imagemin = require('gulp-imagemin')
   , rename = require('gulp-rename')
+  , replace = require('gulp-replace')
   , del = require('del')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
@@ -81,6 +82,12 @@ gulp.task('player', function() {
     .pipe(gulp.dest(dest + 'js'));
 });
 
+gulp.task('frame', function() {
+  return gulp.src(source + 'static.html')
+    .pipe(replace('js/podlove-web-player.js', 'js/podlove-web-player.min.js'))
+    .pipe(gulp.dest(dest));
+});
+
 // Scripts
 gulp.task('scripts', ['player', 'moderator']);
 
@@ -134,7 +141,7 @@ gulp.task('clean', function (cb) {
 
 // build distribution package
 gulp.task('build', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'copy', 'examples');
+  gulp.start('styles', 'scripts', 'frame', 'images', 'copy', 'examples');
 });
 
 // Default task
