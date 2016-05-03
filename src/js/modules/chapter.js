@@ -54,7 +54,7 @@ function renderChapterTable() {
         '<tr>' +
           '<th scope="col">Chapter Number</th>' +
           '<th scope="col">Title</th>' +
-          '<th scope="col">Duration</th>' +
+          '<th scope="col">Start Time</th>' +
         '</tr>' +
       '</thead>' +
       '<tbody></tbody>' +
@@ -72,7 +72,7 @@ function renderRow (chapter, index) {
     '<tr class="chapter">' +
       '<td class="chapter-number"><div class="badge">' + (index + 1) + '</div></td>' +
       '<td class="chapter-name"><div>' + chapter.code + '</div>' + (!!chapter.url ? '<div><a target="_parent" href="' + chapter.url + '">' + chapter.url + '</a></div>' : '') + '</td>' +
-      '<td class="chapter-duration"><div>' + chapter.duration + '</div></td>' +
+      '<td class="chapter-start-time"><div>' + chapter.startTime + '</div></td>' +
     '</tr>'
   );
 }
