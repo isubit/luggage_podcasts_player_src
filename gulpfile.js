@@ -64,7 +64,7 @@ gulp.task('styles', function() {
 
 gulp.task('moderator', function() {
   return gulp.src(source + 'js/moderator.js')
-    .pipe(browserify({ insertGlobals: true, debug: true }))
+    .pipe(browserify({ insertGlobals: true, debug: false }))
     .pipe(rename('podlove-web-moderator.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
@@ -74,7 +74,7 @@ gulp.task('moderator', function() {
 
 gulp.task('player', function() {
   return gulp.src(source + 'js/app.js')
-    .pipe(browserify({ insertGlobals: true, debug: true }))
+    .pipe(browserify({ insertGlobals: true, debug: false }))
     .pipe(rename('podlove-web-player.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
@@ -82,11 +82,11 @@ gulp.task('player', function() {
     .pipe(gulp.dest(dest + 'js'));
 });
 
-//gulp.task('frame', function() {
-//  return gulp.src(source + 'static.html')
-//    .pipe(replace('js/podlove-web-player.js', 'js/podlove-web-player.min.js'))
-//    .pipe(gulp.dest(dest));
-//});
+gulp.task('frame', function() {
+  return gulp.src(source + 'static.html')
+    //.pipe(replace('js/podlove-web-player.js', 'js/podlove-web-player.min.js'))
+    .pipe(gulp.dest(dest));
+});
 
 // Scripts
 gulp.task('scripts', ['player', 'moderator']);
@@ -140,12 +140,8 @@ gulp.task('clean', function (cb) {
 });
 
 // build distribution package
-//gulp.task('build', ['clean'], function() {
-//  gulp.start('styles', 'scripts', 'frame', 'images', 'copy');
-//});
-
 gulp.task('build', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'copy');
+  gulp.start('styles', 'scripts', 'frame', 'images', 'copy');
 });
 
 // Default task
