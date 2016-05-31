@@ -22,7 +22,7 @@ function getSummary (summary) {
 function createEpisodeInfo(tab, params) {
   tab.createMainContent(
     '<h2>' + params.title + '</h2>' +
-    '<h3>' + params.subtitle + '</h3>' +
+    //'<h3>' + params.subtitle + '</h3>' +
     getSummary(params.summary) +
     '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
@@ -55,7 +55,7 @@ function createSubscribeButton(params) {
 function createShowInfo (tab, params) {
   tab.createAside(
     '<h2>' + params.show.title + '</h2>' +
-    '<h3>' + params.show.subtitle + '</h3>' +
+    //'<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
     '<p class="info-link">Link to the Show:<br>' +
