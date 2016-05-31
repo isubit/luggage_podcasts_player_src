@@ -25,11 +25,11 @@ function createEpisodeInfo(tab, params) {
     //'<h3>' + params.subtitle + '</h3>' +
     getSummary(params.summary) +
     '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
-     getPublicationDate(params.publicationDate) +
-    '<p class="info-link">' +
-      'Permalink:<br>' +
-      '<a href="' + params.permalink + '" target="_blank" title="Permalink for Episode">' + params.permalink + '</a>' +
-    '</p>'
+     getPublicationDate(params.publicationDate) //+
+    //'<p class="info-link">' +
+    //  'Permalink:<br>' +
+    //  '<a href="' + params.permalink + '" target="_blank" title="Permalink for Episode">' + params.permalink + '</a>' +
+    //'</p>'
   );
 }
 
@@ -58,8 +58,8 @@ function createShowInfo (tab, params) {
     //'<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
-    '<p class="info-link">Link to the Show:<br>' +
-      '<a href="' + params.show.url + '" target="_blank" title="Link to the Show">' + params.show.url + '</a></p>'
+    '<p class="info-link">Permalink to the Podcast:<br>' +
+      '<a href="' + params.show.url + '" target="_blank" title="Permalink to the Podcast">' + params.show.url + '</a></p>'
   );
 }
 
