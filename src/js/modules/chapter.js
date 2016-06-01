@@ -71,7 +71,7 @@ function renderRow (chapter, index) {
   return render(
     '<tr class="chapter">' +
       '<td class="chapter-number"><div class="badge">' + (index + 1) + '</div></td>' +
-      '<td class="chapter-name"><div>' + chapter.code + '</div>' + (!!chapter.url ? '<div><a target="_parent" href="' + chapter.url + '">' + chapter.url + '</a></div>' : '') + '</td>' +
+      '<td class="chapter-name"><div>' + chapter.code + '</div>' + (!!chapter.url ? '<div><a target="_blank" href="' + chapter.url + '">' + chapter.url + '</a></div>' : '') + '</td>' +
       '<td class="chapter-start-time"><div>' + chapter.startTime + '</div></td>' +
     '</tr>'
   );

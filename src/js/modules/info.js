@@ -14,7 +14,10 @@ function getPublicationDate(rawDate) {
 
 function getSummary (summary) {
   if (summary && summary.length > 0) {
-    return '<p>' + summary + '</p>';
+    var element = $('<p></p>');
+    element.append(summary);
+    element.find('a').attr('target', '_blank');
+    return element.html();
   }
   return '';
 }
