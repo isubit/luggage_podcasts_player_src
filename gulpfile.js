@@ -109,6 +109,8 @@ gulp.task('copy', function() {
   // Copy external JS-libs
   gulp.src(bower + 'html5shiv/dist/*')
     .pipe(gulp.dest(dest + 'js/' + external));
+  gulp.src(bower + 'iframe-resizer/js/iframeResizer*.js')
+    .pipe(gulp.dest(dest + 'js/' + external));
   gulp.src(bower + 'jquery/dist/*')
     .pipe(gulp.dest(dest + 'js/' + external));
 

@@ -8,8 +8,6 @@ var log = require('./logging').getLogger('Moderator');
 
 var $ = jQuery,
     IFRAME_HEIGHT_DEFAULT = 300,
-    IFRAME_HEIGHT_MIN = 100,
-    IFRAME_HEIGHT_MAX = 3000,
     players = {},
     firstPlayer = true,
     metadataList = 'pwp_metadata',
@@ -17,34 +15,6 @@ var $ = jQuery,
     timerange = url.checkCurrent(); // timecode
 
 var options; // global options
-
-function checkBoundaries(value, min, max) {
-  return (value < min || value > max);
-}
-
-/**
- * Sanitize player height
- * @param {Number} height Iframe height
- * @returns {Number} sanitized height
- */
-function getPlayerHeight(height) {
-  if (!height || isNaN(height)) {
-    log.info('Set frame height to default');
-    return IFRAME_HEIGHT_DEFAULT;
-  }
-  if (checkBoundaries(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX)) {
-    log.debug('Frame height %d out of bounds.', height);
-  }
-  return cap(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX);
-}
-
-/**
- * Sanitize player width
- * @returns {string} defaults to '100%'
- */
-function getPlayerWidth() {
-  return '100%';
-}
 
 /**
  * strip hash from location
@@ -89,13 +59,14 @@ function getIframeReplacement() {
 
   $frame = $('<iframe>', {
     src: source,
-    height: getPlayerHeight($element.data('podlove-web-player-height')),
-    width: getPlayerWidth($element.data('podlove-web-player-width')),
-    className: 'podlove-webplayer-frame',
+    height: IFRAME_HEIGHT_DEFAULT,
+    width: '100%',
+    class: 'podlove-webplayer-frame',
     css: {
       border: 'none',
       overflow: 'hidden'
-    }
+    },
+    scrolling: 'no'
   });
 
   frame = $frame.get(0);
@@ -175,9 +146,6 @@ function handleMessage(event) {
     pausePlayersExceptOne(id);
   }
 
-  if (action === 'resize') {
-    player.frame.height(getPlayerHeight(argumentObject));
-  }
 }
 
 // receive messages from embedded players

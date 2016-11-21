@@ -35,6 +35,7 @@
   "devDependencies": {
     "html5shiv": "~3.7.2",
     "progress-polyfill": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git",
+    "iframe-resizer": "~3.5.5",
     "jquery": "~1.11.1",
     "mediaelement": "~2.16.0",
     "podlove-font": "#2.0.0-beta.2",

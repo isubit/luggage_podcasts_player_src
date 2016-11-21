@@ -7,7 +7,6 @@ var log = require('./logging').getLogger('Embed');
 // everything for an embedded player
 var
   players = [],
-  lastHeight = 0,
   $body;
 
 function postToOpener(obj) {
@@ -43,19 +42,6 @@ function waitForMetadata (callback) {
   $(window).on('message', metaDataListener);
 }
 
-function pollHeight() {
-  var newHeight = $body.height();
-  if (lastHeight !== newHeight) {
-    postToOpener({
-      action: 'resize',
-      arg: newHeight
-    });
-  }
-
-  lastHeight = newHeight;
-  requestAnimationFrame(pollHeight, document.body);
-}
-
 /**
  * initialize embed functionality
  * @param {function} $ jQuery
@@ -66,7 +52,6 @@ function init($, playerList) {
   players = playerList;
   $body = $(document.body);
   $(window).on('message', messageListener);
-  pollHeight();
 }
 
 module.exports = {
